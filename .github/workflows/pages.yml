@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, unico]
   workflow_dispatch:
 
 permissions:
@@ -27,12 +27,13 @@ jobs:
         run: npm ci
       - name: Build
         env:
+          # Domínio próprio (plataform.balloon.app.br) usa raiz, não /repo/
           VITE_BASE: /
           VITE_API_BASE_URL: https://api.balloon.app.br/api/v1
           VITE_ADMIN_URL: https://console.balloon.app.br
           # Public key é pública por design. NUNCA coloque MERCADOPAGO_ACCESS_TOKEN aqui.
           VITE_MERCADOPAGO_PUBLIC_KEY: ${{ secrets.VITE_MERCADOPAGO_PUBLIC_KEY }}
-        run: npm run build
+        run: npm run build:prod
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
