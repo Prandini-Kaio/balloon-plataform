@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Lato', system-ui, sans-serif;
+
+  /* Paleta amarela (identidade / conversão) */
+  --color-ink: #040404;
+  --color-primary: #e34d1c;
+  --color-primary-dark: #c43d14;
+  --color-accent: #fabf30;
+  --color-cream: #fff4df;
+
+  /* Paleta azul (contraste / produto) */
+  --color-navy: #181c5d;
+  --color-brand-dark: #181c5d;
+  --color-brand-mid: #2064ac;
+  --color-brand-light: #48c2ee;
+  --color-ice: #dff0ff;
+
+  --color-surface: #ffffff;
+  --color-muted: #5c5c5c;
+  --color-border: #ead9b8;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream font-body text-ink antialiased;
+    background-image:
+      radial-gradient(1200px 500px at 10% -10%, rgba(250, 191, 48, 0.28), transparent 55%),
+      radial-gradient(900px 420px at 100% 0%, rgba(72, 194, 238, 0.18), transparent 50%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-navy;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    background: linear-gradient(90deg, #e34d1c 0%, #fabf30 55%, #48c2ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-hero {
+    background: linear-gradient(160deg, #fff4df 0%, #ffffff 42%, #dff0ff 100%);
+  }
+
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #181c5d 0%, #2064ac 58%, #48c2ee 100%);
+  }
+
+  .bg-gradient-warm {
+    background: linear-gradient(135deg, #e34d1c 0%, #fabf30 100%);
+  }
+
+  .glass-header {
+    background: rgba(255, 244, 223, 0.82);
+    backdrop-filter: blur(16px);
+  }
+
+  .prose-balloon h2 {
+    @apply font-display text-xl font-semibold text-navy;
+  }
+
+  .float-slow {
+    animation: balloon-float 6s ease-in-out infinite;
+  }
+
+  .float-slower {
+    animation: balloon-float 8s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes balloon-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
